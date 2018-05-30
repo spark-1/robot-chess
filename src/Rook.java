@@ -42,9 +42,8 @@ public class Rook extends Base implements Rookable {
 	}
 
 	@Override
-	public void skill() {
-		if (this.mv == null) // mv가 null, 즉 se가 null이 아니라 Skill을 쓰면 Movable이
-								// 됩니다.
+	public void skill(Base a, Base b) {
+		if (this.mv == null) // mv가 null, 즉 se가 null이 아니라 Skill을 쓰면 Movable이됩니다.
 		{
 			this.se = null; // se가 null
 			this.mv = this; // Rook이 mv로 바뀝니다.
@@ -56,6 +55,10 @@ public class Rook extends Base implements Rookable {
 			rk = (Rookable) se;
 			System.out.println("이젠 Siegeable이에요!");
 		}
+	}
+	
+	public Movable getRookMoveable(){
+		return mv;
 	}
 
 }

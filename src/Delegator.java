@@ -37,10 +37,10 @@ public class Delegator {
 	public void skill(Base a, Base b) {
 		if (Math.abs(a.locX - b.locX) + Math.abs(a.locY - b.locY) <= a.range) {
 			System.out.println("중개자가 스킬을 써줍니다.");
-			a.skill();
+			a.skill(a, b);
 			Game.turn *= -1;
 		} else {
-			System.out.println(a.name + "의 공격범위 밖입니다");
+			System.out.println(a.name + "의 스킬범위 밖입니다");
 		}
 	}
 

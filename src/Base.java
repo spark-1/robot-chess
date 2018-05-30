@@ -5,6 +5,7 @@ public abstract class Base{
 	String type;
 	String master;
 	Equipment[] e = new Equipment[3];
+	int maxHp;
 	int hp;
 	int atk;
 	int def;
@@ -36,16 +37,23 @@ public abstract class Base{
 			spdY += 2;
 			range += 1;
 		}
+		if(name.equals("킹")) {
+			hp += 100;
+			atk -= 5;
+		}
 		if(type.equals("기계형")) {
 			hp += 10;
 			atk += 5;
 			def += 3;
 		}
+		maxHp = hp;
 	}
+	
+	public abstract Movable getRookMoveable();
 	
 	public abstract int move();
 
 	public abstract int attack();
 	
-	public abstract void skill();
+	public abstract void skill(Base a, Base b);
 }

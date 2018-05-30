@@ -1,5 +1,5 @@
 public interface Siegeable {
 
-    public void skill();
+    public void skill(Base a, Base b);
 
 }

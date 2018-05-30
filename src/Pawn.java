@@ -17,7 +17,14 @@ public class Pawn extends Base implements Pawnable {
     }
 
 	@Override
-	public void skill() {
+	public void skill(Base a, Base b) {
 		System.out.println("Pawn skill 발동");
+		b.hp -= a.atk - b.def;
+		b.hp -= a.atk - b.def;
+		System.out.println(a.name + "의 스킬 연속공격으로 " + a.master + "의 " + b.name + "의 체력이 " + b.hp + "로 되었습니다.");
+	}
+	
+	public Movable getRookMoveable(){
+		return null;
 	}
 }
