@@ -1,7 +1,7 @@
 public class Pawn extends Base implements Pawnable {
 
-    public Pawn(String name, String type){
-    	super(name, type);
+    public Pawn(String name, String type, String master, int x, int y){
+    	super(name, type, master, x, y);
     	System.out.println("Pawn »ý¼º");
     }
 
