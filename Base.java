@@ -13,6 +13,7 @@ public abstract class Base{
 	int spdY; // y축을 얼마나 움직일지
 	int locX; // 현재 말의 x축 위치 
 	int locY; // 현재 말의 y축 위치
+	String des;
 	
 	public Base(String name, String type, String master, int x, int y){
 		hp = 100;
@@ -21,7 +22,7 @@ public abstract class Base{
 		range = 1;
 		spdX = 1;
 		spdY = 1;
-		locX= x;
+		locX = x;
 		locY = y;
 		this.name = name;
 		this.type = type;
@@ -29,15 +30,13 @@ public abstract class Base{
 		
 		if(type.equals("기계형")){
 			hp += 50;
-			atk += 10;
+			atk += 20;
 			def += 2;
 			spdX += 2;
 			spdY += 2;
 			range += 1;
 		}
 	}
-	
-	public abstract void status_change();
 	
 	public abstract void move();
 

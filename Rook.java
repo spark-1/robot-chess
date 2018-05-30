@@ -1,12 +1,12 @@
 public class Rook extends Base implements Rookable {
 
-	// 컴응 Ready에 있는 동물원 동물을 바탕으로 만들었습니다.
 	Rookable rk = null; // Rookable은 왜 있는지 의문입니다... 만 일단 교수님이 넣어놓으셨어서 넣었습니다.
 	public Siegeable se = null; // Siegeable도
 	public Movable mv = null; // Movable도 null 지금은 그 어떤것도 아닙니다.
 
 	public Rook(String name, String type, String master, int x, int y) {
 		super(name, type, master, x, y);
+		super.des = "룩이 스킬을 씁니다! 모드를 변환합니다!";
 		System.out.println("Rook 생성");
 		mv = (Movable) this; // 생성시 Movable을 Rook으로 바꿔줍니다.
 		se = null; // Siegeable은 null이고요. 이러면 지금 Rook은 Movable입니다.
@@ -25,12 +25,6 @@ public class Rook extends Base implements Rookable {
 	@Override
 	public void change_form(Rookable rk) {
 		this.rk = rk;
-	}
-
-	@Override
-	public void status_change() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

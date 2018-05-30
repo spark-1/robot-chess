@@ -6,13 +6,8 @@ public abstract class Equipment {
 	int added_def;
 	int added_atk;
 	int adeed_spd;
-	String checktype() {
-		return equip_type;		
-	}
-	
 	
 	public Equipment() {
-		System.out.println("Equipment 추상클래스");
+		System.out.println("장비 생성!");
 	}
-
 }
