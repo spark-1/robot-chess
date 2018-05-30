@@ -6,12 +6,14 @@ public class Pawn extends Base implements Pawnable {
     	System.out.println("Pawn 생성");
     }
 
-    public void attack(){
+    public int attack(){
     	System.out.println("Pawn 공격함");
+    	return 1;
     }
     
-    public void move(){
+    public int move(){
     	System.out.println("Pawn 움직임");
+    	return 1;
     }
 
 	@Override

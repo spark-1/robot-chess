@@ -1,8 +1,8 @@
 public class Rook extends Base implements Rookable {
 
-	Rookable rk = null; // Rookable은 왜 있는지 의문입니다... 만 일단 교수님이 넣어놓으셨어서 넣었습니다.
-	public Siegeable se = null; // Siegeable도
-	public Movable mv = null; // Movable도 null 지금은 그 어떤것도 아닙니다.
+	Rookable rk = null; 
+	public Siegeable se = null; 
+	public Movable mv = null;
 
 	public Rook(String name, String type, String master, int x, int y) {
 		super(name, type, master, x, y);
@@ -13,12 +13,14 @@ public class Rook extends Base implements Rookable {
 		rk = (Rookable) mv;
 	}
 
-	public void move() {
+	public int move() {
 		if (this.mv == null) // mv가 null, 즉 se가 null이 아니라 움직이질 못합니다.
 		{
 			System.out.println("못 움직여요! Siegeable이에오!");
+			return 0;
 		} else {
 			System.out.println("Rook 움직여요!");
+			return 1;
 		}
 	}
 
@@ -28,12 +30,14 @@ public class Rook extends Base implements Rookable {
 	}
 
 	@Override
-	public void attack() {
+	public int attack() {
 		if (this.mv == null) // mv가 null, 즉 se가 null이 아니라 공격이 가능합니다.
 		{
 			System.out.println("Rook 공격해요!");
+			return 1;
 		} else {
 			System.out.println("못 공격해요! Movable이에요!");
+			return 0;
 		}
 	}
 

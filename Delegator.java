@@ -7,7 +7,9 @@ public class Delegator {
 	public void attack(Base a, Base b) {
 		if (Math.abs(a.locX - b.locX) + Math.abs(a.locY - b.locY) <= a.range) {
 			System.out.println("중개자가 공격을 시도해줍니다.");
-			a.attack();
+			if(a.attack() == 0){ // 룩이 공격할 수 없으면
+				return;
+			}
 			b.hp -= a.atk - b.def;
 			System.out.println(a.name + "의 공격으로 " + a.master + "의 " + b.name + "의 체력이 " + b.hp + "로 되었습니다.");
 			Game.turn *= -1;
@@ -19,7 +21,9 @@ public class Delegator {
 	public void move(Base a, int toX, int toY, Base board[][]) {
 		if (Math.abs(a.locX - toX) <= a.spdX && Math.abs(a.locY - toY) <= a.spdY) {
 			System.out.println("중개자가 움직여줍니다");
-			a.move();
+			if(a.move() == 0){ // 룩이 움직일 수 없으면
+				return;
+			}
 			board[toX][toY] = a;
 			board[a.locX][a.locY] = null;
 			a.locX = toX;
@@ -33,7 +37,7 @@ public class Delegator {
 	public void skill(Base a, Base b) {
 		if (Math.abs(a.locX - b.locX) + Math.abs(a.locY - b.locY) <= a.range) {
 			System.out.println("중개자가 스킬을 써줍니다.");
-			b.skill();
+			a.skill();
 			Game.turn *= -1;
 		} else {
 			System.out.println(a.name + "의 공격범위 밖입니다");

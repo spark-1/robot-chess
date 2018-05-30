@@ -28,7 +28,7 @@ public abstract class Base{
 		this.type = type;
 		this.master = master;
 		
-		if(type.equals("기계형")){
+		if(name.equals("룩")) {
 			hp += 50;
 			atk += 20;
 			def += 2;
@@ -36,11 +36,16 @@ public abstract class Base{
 			spdY += 2;
 			range += 1;
 		}
+		if(type.equals("기계형")) {
+			hp += 10;
+			atk += 5;
+			def += 3;
+		}
 	}
 	
-	public abstract void move();
+	public abstract int move();
 
-	public abstract void attack();
+	public abstract int attack();
 	
 	public abstract void skill();
 }
