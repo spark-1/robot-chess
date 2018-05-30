@@ -55,9 +55,9 @@ public class PlayerFrame extends JPanel implements MouseListener{
 			player.add(Choose[0][i]);
 		}
 		for(j = 0; j<8 ; j++) {
-			Choose[0][i] = new JComboBox<String>();
-			Choose[0][i].setBounds(x+60*i,y+200,60,60);
-			Choose[0][i].addActionListener(new ActionListener() {
+			Choose[1][i] = new JComboBox<String>();
+			Choose[1][i].setBounds(x+60*i,y+200,60,60);
+			Choose[1][i].addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {

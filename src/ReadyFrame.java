@@ -82,7 +82,7 @@ public class ReadyFrame extends JFrame implements MouseListener{
 			}
 			if(RUReady == 2) {
 				
-					Battle_Area BA = new Battle_Area(Game g);
+					Battle_Area BA = new Battle_Area(this.g);
 					BA.setVisible(true);
 					setVisible(false);
 				

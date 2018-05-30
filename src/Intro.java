@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -14,6 +15,7 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 
 	private JPanel contentPane;
 	private JLabel Title;
+	private BlinkLabel Press;
 	private int w = 1000;
 	private int h = 678;
 	/**
@@ -41,7 +43,20 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
+		contentPane.addMouseListener(this);
+		contentPane.addKeyListener(this);
 		setContentPane(contentPane);
+		
+		Title = new JLabel("R o b o t   C h e s s");
+		Title.setBounds(300, 200, 600,60);
+		Title.setFont(new Font("³ª´®½ºÄù¾î¶ó¿îµå EXTRABOLD",Font.BOLD,40));
+		contentPane.add(Title);
+		
+		Press = new BlinkLabel("Press Enter");
+		Press.setBounds(450, 400, 400, 40);
+		//Press.setFont(new Font("µ¸¿ò",Font.BOLD,20));
+		contentPane.add(Press);
+		setVisible(true);
 	}
 
 	@Override
@@ -53,7 +68,10 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+			setVisible(false);
+			new ReadyFrame();
+		}
 	}
 
 	@Override
@@ -83,7 +101,10 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource() == contentPane) {
+			setVisible(false);
+			new ReadyFrame();
+		}
 	}
 
 	@Override
