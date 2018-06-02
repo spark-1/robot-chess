@@ -3,8 +3,8 @@ package model;
 public class Player {
 	
 	public String name;
-	Delegator d;
-	Base a;
+	public Delegator d;
+	public Base a;
 	
 	public Player(String name) {
 		this.d = new Delegator();
@@ -21,32 +21,33 @@ public class Player {
 		d.move(a, toX, toY, board);
 	}
 	
-	public void attack(Base a, Base b){
+	public void attack(Base a, Base b, Base board[][]){
 		control(a);
-		d.attack(a, b);
+		d.attack(a, b, board);
 	}
 	
-	public void skill(Base a, Base b){
+	public void skill(Base a, Base board[][]){
 		control(a);
-		d.skill(a, b);
+		d.skill(a, board);
+	}
+	
+	public void skill(Base a, Base b, Base board[][]){
+		control(a);
+		d.skill(a, b, board);
 	}
 	
 	public void equip(Base a, Equipment e){
 		control(a);
 		d.equip(a , e);
 	}
-	
-	public Base get_Base()
-	{	
+
+	public Base get_Base() {
+		// TODO Auto-generated method stub
 		return this.a;
 	}
-	public void set_Base(Base b)
-	{
+
+	public void set_Base(Base b) {
 		this.a = b;
-	}
-	
-	public Delegator get_Delegator()
-	{
-		return this.d;
+		
 	}
 }
