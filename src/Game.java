@@ -1,3 +1,4 @@
+package Model;
 
 public class Game {
 
@@ -19,10 +20,10 @@ public class Game {
 
 		g.board[4][0] = new Rook("룩", "기계형", g.player[0].name, 4 , 0);
 		g.board[3][1] = new Pawn("폰1", "인간형", g.player[0].name, 3 , 1);
-		g.board[5][1] = new Pawn("폰2", "인간형", g.player[0].name, 5 , 1);
+		g.board[5][1] = new Pawn("폰2", "기계형", g.player[0].name, 5 , 1);
 		g.board[3][7] = new Rook("룩", "기계형", g.player[1].name, 3 , 7);
 		g.board[2][6] = new Pawn("폰1", "인간형", g.player[1].name, 2 , 6);
-		g.board[4][6] = new Pawn("폰2", "인간형", g.player[1].name, 4 , 6);
+		g.board[4][6] = new Pawn("폰2", "기계형", g.player[1].name, 4 , 6);
 
 		Game.turn = 1;
 	
@@ -31,11 +32,14 @@ public class Game {
 		g.attack(4, 3, 2, 6);
 		g.attack(4, 3, 2, 7);
 		g.attack(4, 3, 3, 4);
-		g.attack(3, 4, 4, 3);
+		g.skill(4, 3);
+		g.skill(3, 4, 4, 3);
+		g.skill(3, 4);
+		g.attack(4, 3, 3, 4);
+		g.skill(3, 4, 4, 3);
 		g.equipment = new Weapon();
 		g.equip(4, 3, g.equipment);
-		System.out.println(g.board[4][3].e[1].getClass().getName());
-		
+		g.attack(4, 3, 3, 4);
 	}
 
 	public void win() {
@@ -54,7 +58,7 @@ public class Game {
 			} else if (turn == -1 && board[x][y].master.equals(player[1].name) && board[toX][toY] == null) {
 				player[1].move(board[x][y], toX, toY, board);
 			} else {
-				System.out.println("말을 잘못 선택하셨습니다.");
+				System.out.println("말 또는 이동할곳을 잘못선택하셨습니다.");
 			}
 		}
 	}
@@ -65,26 +69,40 @@ public class Game {
 		} else {
 			if (turn == 1 && board[x][y].master.equals(player[0].name)
 					&& board[toX][toY].master.equals(player[1].name)) {
-				player[0].attack(board[x][y], board[toX][toY]);
+				player[0].attack(board[x][y], board[toX][toY], board);
 			} else if (turn == -1 && board[x][y].master.equals(player[1].name)
 					&& board[toX][toY].master.equals(player[0].name)) {
-				player[1].attack(board[x][y], board[toX][toY]);
+				player[1].attack(board[x][y], board[toX][toY], board);
 			} else {
 				System.out.println("말을 잘못 선택하셨습니다.");
 			}
 		}
 	}
-
+	
+	public void skill(int x, int y) {
+		if (board[x][y] == null) {
+			System.out.println("말을 잘못 선택하셨습니다.");
+		} else {
+			if (turn == 1 && board[x][y].master.equals(player[0].name)) {
+				player[0].skill(board[x][y], board);
+			} else if (turn == -1 && board[x][y].master.equals(player[1].name)) {
+				player[1].skill(board[x][y], board);
+			} else {
+				System.out.println("말을 잘못 선택하셨습니다.");
+			}
+		}
+	}
+	
 	public void skill(int x, int y, int toX, int toY) {
 		if (board[x][y] == null || board[toX][toY] == null) {
 			System.out.println("말을 잘못 선택하셨습니다.");
 		} else {
 			if (turn == 1 && board[x][y].master.equals(player[0].name)
 					&& board[toX][toY].master.equals(player[1].name)) {
-				player[0].skill(board[x][y], board[toX][toY]);
+				player[0].skill(board[x][y], board[toX][toY], board);
 			} else if (turn == -1 && board[x][y].master.equals(player[1].name)
 					&& board[toX][toY].master.equals(player[0].name)) {
-				player[1].skill(board[x][y], board[toX][toY]);
+				player[1].skill(board[x][y], board[toX][toY], board);
 			} else {
 				System.out.println("말을 잘못 선택하셨습니다.");
 			}

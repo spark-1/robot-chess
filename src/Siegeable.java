@@ -1,5 +1,8 @@
+package Model;
+
 public interface Siegeable {
 
-    public void skill(Base a, Base b);
+	public void skill();
+    public int skill(Base a, Base b);
 
 }

@@ -1,5 +1,8 @@
-public interface Movable {
+package Model;
 
-    public void skill(Base a, Base b);
+public interface Movable {
+	
+	public void skill();
+    public int skill(Base a, Base b);
 
 }

@@ -1,3 +1,4 @@
+package Model;
 
 public class Player {
 	
@@ -20,14 +21,19 @@ public class Player {
 		d.move(a, toX, toY, board);
 	}
 	
-	public void attack(Base a, Base b){
+	public void attack(Base a, Base b, Base board[][]){
 		control(a);
-		d.attack(a, b);
+		d.attack(a, b, board);
 	}
 	
-	public void skill(Base a, Base b){
+	public void skill(Base a, Base board[][]){
 		control(a);
-		d.skill(a, b);
+		d.skill(a, board);
+	}
+	
+	public void skill(Base a, Base b, Base board[][]){
+		control(a);
+		d.skill(a, b, board);
 	}
 	
 	public void equip(Base a, Equipment e){

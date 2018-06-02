@@ -1,6 +1,8 @@
+package Model;
+
 public interface Rookable extends Siegeable, Movable{
 
     public void change_form(Rookable rk);
     
-    public void skill(Base a, Base b);
+    public int skill(Base a, Base b);
 }

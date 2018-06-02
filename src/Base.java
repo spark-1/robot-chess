@@ -1,9 +1,12 @@
+package Model;
 
 public abstract class Base{
 
 	String name;
 	String type;
 	String master;
+	String ActiveSkillDescription;
+	String PassiveSkillDescription;
 	Equipment[] e = new Equipment[3];
 	int maxHp;
 	int hp;
@@ -14,10 +17,9 @@ public abstract class Base{
 	int spdY; // y축을 얼마나 움직일지
 	int locX; // 현재 말의 x축 위치 
 	int locY; // 현재 말의 y축 위치
-	String des;
 	
 	public Base(String name, String type, String master, int x, int y){
-		hp = 100;
+		hp = 150;
 		atk = 10;
 		def = 0;
 		range = 1;
@@ -30,7 +32,7 @@ public abstract class Base{
 		this.master = master;
 		
 		if(name.equals("룩")) {
-			hp += 50;
+			hp -= 50;
 			atk += 20;
 			def += 2;
 			spdX += 2;
@@ -55,5 +57,7 @@ public abstract class Base{
 
 	public abstract int attack();
 	
-	public abstract void skill(Base a, Base b);
+	public abstract void skill();
+	
+	public abstract int skill(Base a, Base b);
 }
