@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Game {
 
@@ -16,14 +16,19 @@ public class Game {
 	}
 
 	public static void main(String args[]) {
+		// 테이블 생성 및 레코드 추가
+//		DAO dao = new DAO();
+//		dao.createHorse();
+//		dao.insert_record();
+		
 		Game g = new Game();
 
 		g.board[4][0] = new Rook("룩", "기계형", g.player[0].name, 4 , 0);
-		g.board[3][1] = new Pawn("폰1", "인간형", g.player[0].name, 3 , 1);
-		g.board[5][1] = new Pawn("폰2", "기계형", g.player[0].name, 5 , 1);
+		g.board[3][1] = new Pawn("폰", "인간형", g.player[0].name, 3 , 1);
+		g.board[5][1] = new Pawn("폰", "기계형", g.player[0].name, 5 , 1);
 		g.board[3][7] = new Rook("룩", "기계형", g.player[1].name, 3 , 7);
-		g.board[2][6] = new Pawn("폰1", "인간형", g.player[1].name, 2 , 6);
-		g.board[4][6] = new Pawn("폰2", "기계형", g.player[1].name, 4 , 6);
+		g.board[2][6] = new Pawn("폰", "인간형", g.player[1].name, 2 , 6);
+		g.board[4][6] = new Pawn("폰", "기계형", g.player[1].name, 4 , 6);
 
 		Game.turn = 1;
 	
