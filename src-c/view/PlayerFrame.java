@@ -1,3 +1,5 @@
+package view;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,10 +13,10 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import Model.Game;
+import model.Game;
 
 
-public class PlayerFrame extends JPanel implements MouseListener{
+public class PlayerFrame extends JPanel implements ActionListener{
 	
 	private JLabel Title;
 	public JComboBox[][] Choose = new JComboBox[2][8];
@@ -108,32 +110,12 @@ public class PlayerFrame extends JPanel implements MouseListener{
 		
 	}
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if((JButton)arg0.getSource() == Ready) {
 			setReady();
 			RR.setVisible(RUReady);
 		}
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void setReady() {

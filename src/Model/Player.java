@@ -2,7 +2,7 @@ package Model;
 
 public class Player {
 	
-	String name;
+	public String name;
 	Delegator d;
 	Base a;
 	

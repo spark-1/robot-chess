@@ -1,6 +1,8 @@
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -17,39 +19,61 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
+import model.Base;
+import model.Game;
+import model.King;
+import model.Pawn;
+import model.Rook;
+import Model.King;
+import Model.Pawn;
+import Model.Rook;
+import Model.Base;
+
 public class Battle_Area extends JFrame{
 	
 	public ImageIcon[] pic = {
-			new ImageIcon("attack_point_o.png"),
-			new ImageIcon("move_point_o.png")
-	};
+			new ImageIcon("attack_point_o.png"), //0
+			new ImageIcon("move_point_o.png"),   //1
+			new ImageIcon("Pawn_R.png"),         //2
+			new ImageIcon("Pawn_L.png"),         //3 
+			new ImageIcon("Pawn_S.png"),         //4
+			new ImageIcon("Move_R.png"),         //5
+			new ImageIcon("Move_L.png"),         //6
+			new ImageIcon("Move_S.png"),         //7
+			new ImageIcon("Siege_L.png"),        //8
+			new ImageIcon("Siege_R.png"),        //9
+			new ImageIcon("Siege_S.png"),        //10
+			new ImageIcon("King.png"),           //11
+			new ImageIcon("King_S.png"),         //12
+			new ImageIcon("skill_point.png")     //13
+	}; 
 	
-	private JLayeredPane pane = new JLayeredPane();
+	private JLayeredPane pane = new JLayeredPane(); 
 	private JPanel bPane, sPane, tPane;
 	private JLabel[][] point = new JLabel[8][8];
 	private JButton[][] board = new JButton[8][8];
-	private JButton attack, move, skill, cancel;
-	private JLabel portrait, name, stat, turn;
-	private JTextArea des;
+	private JButton attack, move, passkill, actskill, cancel;
+	private JLabel portrait, name, stat,turn;
+	private JTextArea equip, des;
 	private JProgressBar hp;
 	
 	Color Brown = new Color(148, 87, 7);
 	Color Beige = new Color(242, 184, 109);
 	
-	//이거 더 나눌수도 있음. Battle_Area는 생성자니까, 각 상황에 맞춰서, 응.
-	//s,b,t를 전부 클래스로 바꿀 수도 있을 듯. Extends 해서
 	public Battle_Area()
 	{	
-		this.setResizable(false);
+		this.setResizable(false); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("로봇 체스");
 		this.setSize(1000, 678);
 		this.add(pane);
-		this.setContentPane(pane);
+		this.setContentPane(pane); 
 		
-		init_bPane();
+		init_bPane(); 
 		init_sPane();
 		init_tPane();
+		
+		this.setVisible(true);
 	}
 	
 	public void init_sPane()
@@ -62,19 +86,18 @@ public class Battle_Area extends JFrame{
 		sPane.setBounds(650, 0, 350, 678);
 		sPane.setLayout(null);
 		
-		portrait = new JLabel();
+		portrait = new JLabel(); 
 		sPane.add(portrait);
-		portrait.setBounds(20, 50, 100, 100);
+		portrait.setBounds(20, 30, 100, 100);
 		portrait.setBorder(BorderFactory.createLineBorder(Color.black));
-		
+																		
 		name = new JLabel();
 		sPane.add(name);
-		name.setBounds(205, 50, 100, 30);
+		name.setBounds(205, 30, 100, 30);
 		name.setFont(new Font("Monospaced", Font.PLAIN, 20));
-		name.setText("Test");
 		
 		hp = new JProgressBar(0, 50);
-		hp.setBounds(150, 100, 150, 30);
+		hp.setBounds(150, 75, 150, 30);
 		hp.setForeground(Color.green);
 		hp.setValue(50);
 		hp.setString("50/50");
@@ -82,48 +105,62 @@ public class Battle_Area extends JFrame{
 		hp.setStringPainted(true);
 		sPane.add(hp);
 		
-		attack = new JButton("공격하기");
-		attack.setBackground(Color.gray);
-		sPane.add(attack);
-		attack.setBounds(20, 200, 100, 70);
-		attack.addMouseListener(new MListener());
+		setAttack(new JButton("공격하기"));
+		getAttack().setBackground(Color.gray);
+		sPane.add(getAttack());
+		getAttack().setBounds(20, 200, 100, 60);
+		getAttack().setEnabled(false);
 		
-		move = new JButton("움직이기");
-		move.setBackground(Color.gray);
-		sPane.add(move);
-		move.setBounds(20, 300, 100, 70);
-		move.addMouseListener(new MListener());
+		setMove(new JButton("움직이기"));
+		getMove().setBackground(Color.gray);
+		sPane.add(getMove());
+		getMove().setBounds(20, 280, 100, 60);
+		getMove().setEnabled(false);
 		
-		skill = new JButton("스킬사용");
-		skill.setBackground(Color.gray);
-		sPane.add(skill);
-		skill.setBounds(20, 400, 100, 70);
-		skill.addMouseListener(new MListener());
+		setPasSkill(new JButton("패시브스킬"));
+		getPasSkill().setBackground(Color.gray);
+		sPane.add(getPasSkill());
+		getPasSkill().setBounds(20, 360, 100, 60);
+		getPasSkill().setEnabled(false);
 		
-		cancel = new JButton("취소");
-		cancel.setBackground(Color.gray);
-		sPane.add(cancel);
-		cancel.setBounds(20, 500, 100, 70);
-		cancel.setEnabled(false);
-		//cancel.addActionListener(new AListener());
+		setActSkill(new JButton("액티브스킬"));
+		getActSkill().setBackground(Color.gray);
+		sPane.add(getActSkill());
+		getActSkill().setBounds(20, 440, 100, 60);
+		getActSkill().setEnabled(false);
 		
-		stat = new JLabel("Atk: - , Def: - ");
+		setCancel(new JButton("취소"));
+		getCancel().setBackground(Color.gray);
+		sPane.add(getCancel());
+		getCancel().setBounds(20, 520, 100, 60);
+		getCancel().setEnabled(false);
+		
+		stat = new JLabel("Atk: -, Def: - ");
 		sPane.add(stat);
 		stat.setFont(new Font("Monospaced", Font.PLAIN, 20));
-		stat.setBounds(150, 130, 200, 100);
+		stat.setBounds(20, 120, 300, 100);
 		
-		des = new JTextArea();
-		sPane.add(des);
-		des.setBounds(150, 300, 150, 100);
-		des.setEditable(false);
-		des.setFont(new Font("Monospaced", Font.PLAIN, 15));
-		des.setOpaque(false);
+		equip = new JTextArea("장비가 들어갈 곳.");
+		sPane.add(equip);
+		equip.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		equip.setBounds(150, 220, 150, 150);
+		equip.setLineWrap(true);
+		equip.setEditable(false);
+		equip.setOpaque(false);
+		
+		setDes(new JTextArea());
+		sPane.add(getDes());
+		getDes().setBounds(150, 350, 150, 250);
+		getDes().setLineWrap(true);
+		getDes().setEditable(false);
+		getDes().setFont(new Font("Monospaced", Font.PLAIN, 18));
+		getDes().setOpaque(false);
 		
 		turn = new JLabel();
 		sPane.add(turn);
-		turn.setBounds(20, 590, 100, 30);
+		turn.setBounds(20, 595, 200, 30);
 		turn.setFont(new Font("Monospaced", Font.PLAIN, 20));
-		turn.setText("-의 차례");
+		turn.setText("--------의 차례");
 	}
 	
 	public void init_bPane()
@@ -137,13 +174,12 @@ public class Battle_Area extends JFrame{
 		{
 			for(int j = 0; j<8; j++)
 			{
-				board[i][j] = new JButton();
-				if((i+j)%2 == 0) {board[i][j].setBackground(Brown);}
-				else{board[i][j].setBackground(Beige);}
-				bPane.add(board[i][j]);
-				board[i][j].setBounds(i*80, j*80, 80, 80);
-				//board[i][j].addActionListener(new AListener());
-				board[i][j].addMouseListener(new MListener());
+				getBoard()[i][j] = new JButton();
+				if((i+j)%2 == 0) {getBoard()[i][j].setBackground(Brown);}
+				else{getBoard()[i][j].setBackground(Beige);}
+				bPane.add(getBoard()[i][j]);
+				getBoard()[i][j].setBounds(j*80, i*80, 80, 80);
+				
 			}
 		}
 	}
@@ -163,31 +199,152 @@ public class Battle_Area extends JFrame{
 				point[i][j].setVisible(false);
 				tPane.add(point[i][j]);
 
-				point[i][j].setBounds(20 + i*80, 20 + j*80, 40, 40);
-				//point[i][j].addActionListener(new AListener());
+				point[i][j].setBounds(20 + j*80, 20 + i*80, 40, 40);
 			}
 		}
 	}
 	
-	//이 함수들은 control에서 정보를 받아와서 실행되게 됨.
-	public void set_mPane()
+	public void set_bPane(Game game)
 	{
-		//보드쪽을 갱신
+		for(int i = 0; i<8; i++)
+		{
+			for(int j = 0; j<8; j++)
+			{
+				if(game.board[i][j] != null)
+				{
+					if(game.board[i][j].master == game.player[0].name)
+					{
+						if(game.board[i][j] instanceof Pawn)
+						{
+							getBoard()[i][j].setIcon(pic[2]);
+						}
+						else if(game.board[i][j] instanceof Rook)
+						{
+							if(((Rook)game.board[i][j]).mv == null)
+							{
+								getBoard()[i][j].setIcon(pic[9]);
+							}
+							else
+							{
+								getBoard()[i][j].setIcon(pic[5]);
+							}
+							
+						}
+						else if(game.board[i][j] instanceof King)
+						{
+							getBoard()[i][j].setIcon(pic[11]);
+						}
+					}
+					else
+					{
+						if(game.board[i][j] instanceof Pawn)
+						{
+							getBoard()[i][j].setIcon(pic[3]);
+						}
+						else if(game.board[i][j] instanceof Rook)
+						{
+							if(((Rook)game.board[i][j]).mv == null)
+							{
+								getBoard()[i][j].setIcon(pic[8]);
+							}
+							else
+							{
+								getBoard()[i][j].setIcon(pic[6]);
+							}
+						}
+						else if(game.board[i][j] instanceof King)
+						{
+							getBoard()[i][j].setIcon(pic[11]);
+						}
+					}
+				}
+				else
+				{
+					getBoard()[i][j].setIcon(null);
+				}
+			}
+		}
 	}
 	
-	public void set_sPane()
+	public void set_sPane(Base b)
 	{
-		//status쪽을 갱신
+		if(b instanceof Pawn)
+		{
+			portrait.setIcon(pic[4]);
+		}
+		else if(b instanceof Rook)
+		{
+			if(((Rook)b).mv == null)
+			{
+				portrait.setIcon(pic[10]);
+			}
+			else
+			{
+				portrait.setIcon(pic[7]);
+			}
+		}
+		else if(b instanceof King)
+		{
+			portrait.setIcon(pic[12]);
+		}
+		
+		name.setText(b.name);
+		
+		hp.setMaximum(b.maxHp);
+		hp.setMinimum(0);
+		hp.setValue(b.hp);
+		hp.setString(b.hp+"/"+b.maxHp);
+
+		getAttack().setEnabled(true);
+		getMove().setEnabled(true);
+		getPasSkill().setEnabled(true);
+		getActSkill().setEnabled(true);
+		getCancel().setEnabled(false);
+		
+		stat.setText("Atk: "+b.atk+" , Def: "+b.def);
+		equip.setText("머리:-----\n다리:-----\n무기:-------\n");
 	}
 	
-	public void set_turn()
+	public void reset_sPane()
 	{
-		//턴을 바꿀 때 사용할 것.
+		portrait.setIcon(null);
+		name.setText("정보없음");
+		
+		hp.setMaximum(0);
+		hp.setMinimum(0);
+		hp.setValue(0);
+		hp.setString("");
+
+		getAttack().setEnabled(false);
+		getMove().setEnabled(false);
+		getPasSkill().setEnabled(false);
+		getActSkill().setEnabled(false);
+		getCancel().setEnabled(false);
+		
+		stat.setText("정보없음");
+		equip.setText("정보없음\n정보없음\n정보없음");
 	}
 	
-	public void light_movable()
+	public void set_sPane_guest(Base b) {
+		set_sPane(b);
+		getAttack().setEnabled(false);
+		getMove().setEnabled(false);
+		getPasSkill().setEnabled(false);
+		getActSkill().setEnabled(false);
+		getCancel().setEnabled(false);
+	}
+	
+	
+	public void set_turn(Game game)
 	{
-		//움직일 수 있는 곳을 mPane의 체스판 위에 표시
+		if(Game.turn == -1)
+		{
+			turn.setText(game.player[1].name + "의 턴");
+		}
+		else
+		{
+			turn.setText(game.player[0].name + "의 턴");
+		}
 	}
 	
 	public void light_moveable(int i, int j)
@@ -196,64 +353,82 @@ public class Battle_Area extends JFrame{
 		point[i][j].setIcon(pic[1]);
 	}
 	
-	public void light_attackable()
-	{
-		//공격할 수 있는 곳을 mPane의 체스판 위에 표시
-	}
-	
 	public void light_attackable(int i, int j)
 	{
 		point[i][j].setVisible(true);
 		point[i][j].setIcon(pic[0]);
 	}
 	
-	private class AListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
+	public void light_skillable(int i, int j)
+	{
+		point[i][j].setVisible(true);
+		point[i][j].setIcon(pic[13]);
+	}
+	
+	public void dislight()
+	{
+		for(int i = 0; i<8; i++)
+		{
+			for(int j = 0; j<8; j++)
+			{
+				point[i][j].setVisible(false);
+			}
 		}
 	}
 	
-	private class MListener implements MouseListener{
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			
-		}
+	public JButton getAttack() {
+		return attack;
+	}
 
-		@Override
-		public void mousePressed(MouseEvent e) {
-			
-		}
+	public void setAttack(JButton attack) {
+		this.attack = attack;
+	}
 
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			
-		}
+	public JButton[][] getBoard() {
+		return board;
+	}
 
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			if(e.getSource() == attack)
-			{
-				des.append("범위내의 적을 --의 공격력으로 통상공격합니다.");
-			}
-			if(e.getSource() == move)
-			{
-				des.append("이동할 수 있는 범위 내의 칸으로 이동합니다.");
-			}
-			if(e.getSource() == skill)
-			{
-				des.append("말의 특수능력을 사용합니다.(이 부분은 말에서 받아올 예정)");
-			}
-		}
+	public void setBoard(JButton[][] board) {
+		this.board = board;
+	}
 
-		@Override
-		public void mouseExited(MouseEvent e) {
-			if(e.getSource() == attack || e.getSource() == move || e.getSource() == skill)
-			{
-				des.setText("");
-			}
-			
-		}
-	
+	public JTextArea getDes() {
+		return des;
+	}
+
+	public void setDes(JTextArea des) {
+		this.des = des;
+	}
+
+	public JButton getMove() {
+		return move;
+	}
+
+	public void setMove(JButton move) {
+		this.move = move;
+	}
+
+	public JButton getPasSkill() {
+		return passkill;
+	}
+
+	public void setPasSkill(JButton skill) {
+		this.passkill = skill;
+	}
+
+	public JButton getActSkill() {
+		return this.actskill;
 	}
 	
+	public void setActSkill(JButton skill){
+		this.actskill = skill;
+	}
+
+	public JButton getCancel() {
+		return cancel;
+	}
+
+	public void setCancel(JButton cancel) {
+		this.cancel = cancel;
+	}
 }

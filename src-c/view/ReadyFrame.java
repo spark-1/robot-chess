@@ -1,3 +1,5 @@
+package view;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -9,12 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Model.Base;
-import Model.Game;
-import Model.Horse;
-import Model.King;
-import Model.Pawn;
-import Model.Rook;
+import model.Base;
+import model.Game;
+import model.Horse;
+import model.King;
+import model.Pawn;
+import model.Rook;
 
 
 public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
@@ -68,14 +70,16 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 		PF[0] = new PlayerFrame(0,0,1,ss,s1,s2);
 		PF[0].setBounds(0,0,this.w/2,h);
 		PF[0].setVisible(true);
+		PF[0].addMouseListener(this);
 		
 		PF[1] = new PlayerFrame(w/2,0,2,ss,s1,s2);
 		PF[1].setBounds(this.w/2,0,this.w/2,h);
 		PF[1].setVisible(true);
+		PF[1].addMouseListener(this);
 		
 		WF.add(PF[0]);
 		WF.add(PF[1]);
-		
+		WF.addMouseListener(this);
 		
 		this.setVisible(true);
 	}
@@ -95,7 +99,6 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 				RUReady++;
 			}
 			if(RUReady == 2) {
-				
 					Overseer BA = new Overseer(this.g);
 					setVisible(false);
 				
@@ -106,25 +109,89 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if( arg0.getSource() == PF[0].getReady() || arg0.getSource() == PF[1].getReady()) {
+			boolean tmp = false;
+			RUReady = 0;
+			tmp = PF[0].getRUReady();
+			if(tmp == true) {
+				RUReady++;
+			}
+			tmp  = PF[1].getRUReady();
+			if(tmp == true) {
+				RUReady++;
+			}
+			if(RUReady == 2) {
+					Overseer BA = new Overseer(this.g);
+					setVisible(false);
+				
+			}
+		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if( arg0.getSource() == PF[0].getReady() || arg0.getSource() == PF[1].getReady()) {
+			boolean tmp = false;
+			RUReady = 0;
+			tmp = PF[0].getRUReady();
+			if(tmp == true) {
+				RUReady++;
+			}
+			tmp  = PF[1].getRUReady();
+			if(tmp == true) {
+				RUReady++;
+			}
+			if(RUReady == 2) {
+					Overseer BA = new Overseer(this.g);
+					setVisible(false);
+				
+			}
+		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if( arg0.getSource() == PF[0].getReady() || arg0.getSource() == PF[1].getReady()) {
+			boolean tmp = false;
+			RUReady = 0;
+			tmp = PF[0].getRUReady();
+			if(tmp == true) {
+				RUReady++;
+			}
+			tmp  = PF[1].getRUReady();
+			if(tmp == true) {
+				RUReady++;
+			}
+			if(RUReady == 2) {
+					Overseer BA = new Overseer(this.g);
+					setVisible(false);
+				
+			}
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if( arg0.getSource() == PF[0].getReady() || arg0.getSource() == PF[1].getReady()) {
+			boolean tmp = false;
+			RUReady = 0;
+			tmp = PF[0].getRUReady();
+			if(tmp == true) {
+				RUReady++;
+			}
+			tmp  = PF[1].getRUReady();
+			if(tmp == true) {
+				RUReady++;
+			}
+			if(RUReady == 2) {
+					Overseer BA = new Overseer(this.g);
+					setVisible(false);
+				
+			}
+		}
 	}
 
 	@Override
@@ -162,15 +229,15 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 						}
 						else {
 							if(tmp1 == "·è") {
-								g.board[6+j][7-k] = new Rook(tmp1,tmp2,g.player[0].name,1-j,k); 
+								g.board[6+j][7-k] = new Rook(tmp1,tmp2,g.player[0].name,6+j,7-k); 
 							}
 							else if(tmp1 == "Å·") {
 								if(g.board[6+j][7-k] == null) {
-									g.board[6+j][7-k] = new King(tmp1,tmp2,g.player[0].name,1-j,k);
+									g.board[6+j][7-k] = new King(tmp1,tmp2,g.player[0].name,6+j,7-k);
 								}
 							}
 							else {
-								g.board[6+j][7-k] = new Pawn(tmp1,tmp2,g.player[0].name,1-j,k);
+								g.board[6+j][7-k] = new Pawn(tmp1,tmp2,g.player[0].name,6+j,7-k);
 							}
 						}
 					}

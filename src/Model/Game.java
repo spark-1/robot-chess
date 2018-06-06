@@ -1,9 +1,9 @@
-package model;
+package Model;
 
 public class Game {
 
-	Player player[];
-	Base board[][];
+	public Player player[];
+	public Base board[][];
 	Equipment equipment;
 	static int turn;
 

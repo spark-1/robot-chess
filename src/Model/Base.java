@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 public abstract class Base{
 
@@ -10,7 +10,7 @@ public abstract class Base{
 	Equipment[] e = new Equipment[3];
 	int maxHp;
 	int hp;
-	int atk;
+	public int atk;
 	int def;
 	int range; // 공격 범위
 	int spdX; // x축을 얼마나 움직일지
