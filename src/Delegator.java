@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Delegator {
 
@@ -71,7 +71,7 @@ public class Delegator {
 
 	public void equip(Base a, Equipment e) {
 		System.out.println("중개자가 장비를 장착해줍니다.");
-		if (e.getClass().getName().equals("Model.Armor") && a.e[0] == null) {
+		/*if (e.getClass().getName().equals("Model.Armor") && a.e[0] == null) {
 			a.e[0] = e;
 			a.def += 3;
 			System.out.println(a.master + "가 " + a.name + "에게 아머를 장착합니다. 방어력이 3증가합니다." );
@@ -86,6 +86,6 @@ public class Delegator {
 			a.spdX += 1;
 			a.spdY += 1;
 			System.out.println(a.master + "가 " + a.name + "에게 다리를 장착합니다. 이동거리가 1증가합니다." );
-		}
+		}*/
 	}
 }
