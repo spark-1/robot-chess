@@ -11,6 +11,7 @@ public class Delegator {
 			if(a.move() == 0){ // 룩이 움직일 수 없으면
 				return;
 			}
+			a.activeSkill = 1;
 			board[toX][toY] = a;
 			board[a.locX][a.locY] = null;
 			a.locX = toX;
@@ -28,6 +29,7 @@ public class Delegator {
 			if(a.attack() == 0){ // 룩이 공격할 수 없으면
 				return;
 			}
+			a.activeSkill = 1;
 			b.hp -= a.atk - b.def;
 			if(b.hp <= 0){
 				System.out.println(a.master + "의 " + a.name + "의 공격으로 " + b.master + "의 " + b.name + "이(가) 죽었습니다.");
@@ -48,6 +50,7 @@ public class Delegator {
 	public void skill(Base a, Base board[][]) { // 패시브 스킬인 경우
 			System.out.println("중개자가 스킬을 써줍니다.");
 			a.skill();
+			a.activeSkill = 1;
 			Game.turn *= -1;
 			System.out.println(a.master + "의 " + a.name + "이(가) 스킬을 사용했습니다");
 	}
@@ -58,6 +61,7 @@ public class Delegator {
 			if(a.skill(a, b) == 0){ // 액티브 스킬을 사용할 수 없으면
 				return;
 			}
+			a.activeSkill = -1;
 			if(b.hp <= 0){
 				System.out.println(a.master + "의 " + a.name + "의 스킬공격으로 " + b.master + "의 " + b.name + "이(가) 죽었습니다.");
 				board[b.locX][b.locY] = null;

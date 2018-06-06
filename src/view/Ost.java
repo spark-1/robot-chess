@@ -28,7 +28,7 @@ private static Ost Singleton = new Ost();
 	public File rookact = new File("Rook_Act.wav");
 	public File rookpas = new File("Rook_Change.wav");
 	public File kinghit = new File("King_Hit.wav");
-	
+	public File move = new File("Move.wav");
 	
 	public void playMusic(File Sound) {
 		try {

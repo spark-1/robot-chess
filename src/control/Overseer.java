@@ -437,7 +437,7 @@ public class Overseer implements ActionListener, MouseListener{
 		}
 		if(state == 2)
 		{
-			//°È´Â°Å...
+			ost.playSfx(ost.move);
 		}
 		if(state == 3)
 		{
