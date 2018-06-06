@@ -206,8 +206,8 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 										}
 										else {
 											System.out.println("룩을 비우고 만들어요.");
-											G.board[k][1-j] = null;
-											G.board[k][1-j] = new Rook(tmp1,tmp2,G.player[0].name,k,1-j);
+											G.board[7-k][6+j] = null;
+											G.board[7-k][6+j] = new Rook(tmp1,tmp2,G.player[0].name,k,1-j);
 										}
 									}
 									else if(tmp1 == "킹") {
@@ -251,14 +251,14 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 										}
 									}
 									else {
-										if(G.board[6+j][7-k] == null) {
+										if(G.board[7-k][6+j] == null) {
 											System.out.println("2p의 폰을 새로 만들어요");
-											G.board[6+j][7-k] = new Pawn(tmp1,tmp2,G.player[1].name,6+j,7-k); 
+											G.board[7-k][6+j] = new Pawn(tmp1,tmp2,G.player[1].name,7-k,6+j); 
 										}
 										else {
 											System.out.println("2p의 폰을 비우고 만들어요");
-											G.board[6+j][7-k] = null;
-											G.board[6+j][7-k] = new Pawn(tmp1,tmp2,G.player[1].name,6+j,7-k);
+											G.board[7-k][6+j] = null;
+											G.board[7-k][6+j]= new Pawn(tmp1,tmp2,G.player[1].name,7-k,6+j);
 										} 		
 									}
 								}
