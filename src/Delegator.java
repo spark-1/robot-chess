@@ -58,6 +58,9 @@ public class Delegator {
 			if(b.hp <= 0){
 				System.out.println(a.master + "의 " + a.name + "의 스킬공격으로 " + b.master + "의 " + b.name + "이(가) 죽었습니다.");
 				board[b.locX][b.locY] = null;
+				if(b.name.equals("킹")) {
+					Game.win();
+				}
 			}
 			else{
 				System.out.println(a.master + "의 " + a.name + "이(가) 스킬공격을 사용했습니다");
@@ -71,21 +74,21 @@ public class Delegator {
 
 	public void equip(Base a, Equipment e) {
 		System.out.println("중개자가 장비를 장착해줍니다.");
-		/*if (e.getClass().getName().equals("Model.Armor") && a.e[0] == null) {
+		if (e.getClass().getName().equals("model.Armor") && a.e[0] == null) {
 			a.e[0] = e;
 			a.def += 3;
 			System.out.println(a.master + "가 " + a.name + "에게 아머를 장착합니다. 방어력이 3증가합니다." );
 		}
-		else if (e.getClass().getName().equals("Model.Weapon") && a.e[1] == null) {
+		else if (e.getClass().getName().equals("model.Weapon") && a.e[1] == null) {
 			a.e[1] = e;
 			a.atk += 5;
 			System.out.println(a.master + "가 " + a.name + "에게 무기를 장착합니다. 공격력이 5증가합니다." );
 		}
-		else if (e.getClass().getName().equals("Model.Leg") && a.e[2] == null) {
+		else if (e.getClass().getName().equals("model.Leg") && a.e[2] == null) {
 			a.e[2] = e;
 			a.spdX += 1;
 			a.spdY += 1;
 			System.out.println(a.master + "가 " + a.name + "에게 다리를 장착합니다. 이동거리가 1증가합니다." );
-		}*/
+		}
 	}
 }

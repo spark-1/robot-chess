@@ -10,17 +10,15 @@ import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-
 import model.Horse;
 
 public class DAO {
 	
 	String driver = "com.mysql.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/javaproject";
-	String uid = "이름";
-	String upw = "비밀번호";
+	String uid = "root";
+	String upw = "juns4025!";
 	
-		
 	public DAO() {
 		try {
 			Context context = new InitialContext();

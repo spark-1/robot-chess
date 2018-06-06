@@ -2,23 +2,25 @@ package model;
 
 public abstract class Base{
 
-	String name;
-	String type;
-	String master;
-	String ActiveSkillDescription;
-	String PassiveSkillDescription;
-	Equipment[] e = new Equipment[3];
-	int maxHp;
-	int hp;
-	int atk;
-	int def;
-	int range; // 공격 범위
-	int spdX; // x축을 얼마나 움직일지
-	int spdY; // y축을 얼마나 움직일지
-	int locX; // 현재 말의 x축 위치 
-	int locY; // 현재 말의 y축 위치
+	public String name;
+	public String type;
+	public String master;
+	public String ActiveSkillDescription;
+	public String PassiveSkillDescription;
+	public Equipment[] e = new Equipment[3];
+	public int maxHp;
+	public int hp;
+	public int atk;
+	public int def;
+	public int range; // 공격 범위
+	public int spdX; // x축을 얼마나 움직일지
+	public int spdY; // y축을 얼마나 움직일지
+	public int locX; // 현재 말의 x축 위치 
+	public int locY; // 현재 말의 y축 위치
+	public int activeSkill;
 	
 	public Base(String name, String type, String master, int x, int y){
+		
 		DAO dao = new DAO();
 		Horse horse = dao.findHorse(name, type);
 		this.hp = horse.hp;
