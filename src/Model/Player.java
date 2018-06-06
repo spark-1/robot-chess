@@ -3,8 +3,8 @@ package Model;
 public class Player {
 	
 	public String name;
-	Delegator d;
-	Base a;
+	public Delegator d;
+	public Base a;
 	
 	public Player(String name) {
 		this.d = new Delegator();
@@ -39,5 +39,14 @@ public class Player {
 	public void equip(Base a, Equipment e){
 		control(a);
 		d.equip(a , e);
+	}
+	
+	public Base get_Base() {
+		// TODO Auto-generated method stub
+		return this.a;
+	}
+
+	public void set_Base(Base b) {
+		this.a = b;
 	}
 }
