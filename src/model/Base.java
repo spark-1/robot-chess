@@ -20,8 +20,8 @@ public abstract class Base{
 	public int activeSkill;
 	
 	public Base(String name, String type, String master, int x, int y){
-		
-		/*DAO dao = new DAO();
+		System.out.println(name+type+"생성했습니다!!");
+		DAO dao = new DAO();
 		Horse horse = dao.findHorse(name, type);
 		this.hp = horse.hp;
 		this.atk = horse.atk;
@@ -30,8 +30,8 @@ public abstract class Base{
 		this.spdX = horse.spdX;
 		this.spdY = horse.spdY;
 		this.name = horse.name;
-		this.type = horse.type;*/
-		
+		this.type = horse.type;
+		/*
 	    hp = 150;
 		atk = 10;
 		def = 0;
@@ -63,6 +63,7 @@ public abstract class Base{
 		}
 		//maxHp = horse.hp;
 		maxHp = 200;
+		*/
 	}
 	
 	public abstract Movable getRookMoveable();
