@@ -52,45 +52,16 @@ public class PlayerFrame extends JPanel implements ActionListener{
 		for(j = 0; j<8 ; j++) {
 			Choose[0][j] = new JComboBox<String>(this.s1);
 			Choose[0][j].setBounds(60*(j)+5,300,60,60);
-			//Choose[0][j].addActionListener(new ActionListener() {
-			//	private String temp1;
-			//	private String temp2;
-			//	
-			//	@Override
-			//	public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
-					//temp1 = Choose[0][j].getSelectedItem().toString();
-			//	}
-				
-			//});
 			this.add(Choose[0][j]);
 		}
 		for(j = 0; j<8 ; j++) {
 			if(j == 4) {
 				Choose[1][j] = new JComboBox<String>(this.ss);
 				Choose[1][j].setBounds(60*(j)+5,400,60,60);
-				// Choose[1][j].addActionListener(new ActionListener() {
-				//
-				//	@Override
-				//	public void actionPerformed(ActionEvent arg0) {
-				//		// TODO Auto-generated method stub
-				//		
-				//	}
-					
-				// });
 			}
 			else {
 				Choose[1][j] = new JComboBox<String>(this.s2);
 				Choose[1][j].setBounds(60*(j)+5,400,60,60);
-				Choose[1][j].addActionListener(new ActionListener() {
-	
-					@Override
-					public void actionPerformed(ActionEvent arg0) {
-						// TODO Auto-generated method stub
-						
-					}
-					
-				});
 			}
 			this.add(Choose[1][j]);
 		}

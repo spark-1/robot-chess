@@ -48,6 +48,10 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 		B[3] = new BaseList("·è","±â°èÇü");
 		B[4] = new BaseList("Å·","ÀÎ°£Çü");
 		
+		g = new game();
+		g.board[0][4] = new King(tmp1,tmp2,g.player[0].name,1-j,k);
+		g.board[7][3] = new King(tmp1,tmp2,g.player[0].name,1-j,k);
+		
 		ss = new String[1];
 		s1 = new String[3];
 		s2 = new String[3];
@@ -70,16 +74,16 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 		PF[0] = new PlayerFrame(0,0,1,ss,s1,s2);
 		PF[0].setBounds(0,0,this.w/2,h);
 		PF[0].setVisible(true);
-		PF[0].addMouseListener(this);
+		PF[0].addActionListener(this);
 		
 		PF[1] = new PlayerFrame(w/2,0,2,ss,s1,s2);
 		PF[1].setBounds(this.w/2,0,this.w/2,h);
 		PF[1].setVisible(true);
-		PF[1].addMouseListener(this);
+		PF[1].addActionListener(this);
 		
 		WF.add(PF[0]);
 		WF.add(PF[1]);
-		WF.addMouseListener(this);
+		WF.addActionListener(this);
 		
 		this.setVisible(true);
 	}
@@ -87,111 +91,28 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		if( arg0.getSource() == PF[0].getReady() || arg0.getSource() == PF[1].getReady()) {
-			boolean tmp = false;
-			RUReady = 0;
-			tmp = PF[0].getRUReady();
-			if(tmp == true) {
-				RUReady++;
-			}
-			tmp  = PF[1].getRUReady();
-			if(tmp == true) {
-				RUReady++;
-			}
-			if(RUReady == 2) {
-					Overseer BA = new Overseer(this.g);
-					setVisible(false);
-				
-			}
-		}
+		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if( arg0.getSource() == PF[0].getReady() || arg0.getSource() == PF[1].getReady()) {
-			boolean tmp = false;
-			RUReady = 0;
-			tmp = PF[0].getRUReady();
-			if(tmp == true) {
-				RUReady++;
-			}
-			tmp  = PF[1].getRUReady();
-			if(tmp == true) {
-				RUReady++;
-			}
-			if(RUReady == 2) {
-					Overseer BA = new Overseer(this.g);
-					setVisible(false);
-				
-			}
-		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if( arg0.getSource() == PF[0].getReady() || arg0.getSource() == PF[1].getReady()) {
-			boolean tmp = false;
-			RUReady = 0;
-			tmp = PF[0].getRUReady();
-			if(tmp == true) {
-				RUReady++;
-			}
-			tmp  = PF[1].getRUReady();
-			if(tmp == true) {
-				RUReady++;
-			}
-			if(RUReady == 2) {
-					Overseer BA = new Overseer(this.g);
-					setVisible(false);
-				
-			}
-		}
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if( arg0.getSource() == PF[0].getReady() || arg0.getSource() == PF[1].getReady()) {
-			boolean tmp = false;
-			RUReady = 0;
-			tmp = PF[0].getRUReady();
-			if(tmp == true) {
-				RUReady++;
-			}
-			tmp  = PF[1].getRUReady();
-			if(tmp == true) {
-				RUReady++;
-			}
-			if(RUReady == 2) {
-					Overseer BA = new Overseer(this.g);
-					setVisible(false);
-				
-			}
-		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if( arg0.getSource() == PF[0].getReady() || arg0.getSource() == PF[1].getReady()) {
-			boolean tmp = false;
-			RUReady = 0;
-			tmp = PF[0].getRUReady();
-			if(tmp == true) {
-				RUReady++;
-			}
-			tmp  = PF[1].getRUReady();
-			if(tmp == true) {
-				RUReady++;
-			}
-			if(RUReady == 2) {
-					Overseer BA = new Overseer(this.g);
-					setVisible(false);
-				
-			}
-		}
 	}
 
 	@Override
@@ -202,42 +123,63 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 		int j = 0;
 		int k = 0;
 		int l = 0;
-		
-		// TODO Auto-generated method stub
-		for(i = 0 ; i < 2 ; i++) {
-			for(j = 0 ; j < 2; j++) {
-				for(k = 0; k < 8 ; k++) {
-					if(e.getSource() == PF[i].Choose[j][k]) {
-						for(l = 0; l < 5 ; l++) {
-							if(B[l].NT == PF[i].Choose[j][k].getName()) {
-								tmp1 = B[l].name;
-								tmp2 = B[l].type;
+		if( arg0.getSource() == PF[0].getReady() || arg0.getSource() == PF[1].getReady()) {
+			boolean tmp = false;
+			RUReady = 0;
+			tmp = PF[0].getRUReady();
+			if(tmp == true) {
+				RUReady++;
+			}
+			tmp  = PF[1].getRUReady();
+			if(tmp == true) {
+				RUReady++;
+			}
+			if(RUReady == 2) {
+					WF.removeMouseListener(this);
+					PF[0].removeMouseListener(this);
+					PF[1].removeMouseListener(this);
+					Overseer BA = new Overseer(this.g);
+					setVisible(false);
+				
+			}
+		}
+		else {
+			// TODO Auto-generated method stub
+			for(i = 0 ; i < 2 ; i++) {
+				for(j = 0 ; j < 2; j++) {
+					for(k = 0; k < 8 ; k++) {
+						if(e.getSource() == PF[i].Choose[j][k]) {
+							for(l = 0; l < 5 ; l++) {
+								if(B[l].NT == PF[i].Choose[j][k].getName()) {
+									tmp1 = B[l].name;
+									tmp2 = B[l].type;
+								}
 							}
-						}
-						if(i == 0) {
-							if(tmp1 == "·è") {
-								g.board[1-j][k] = new Rook(tmp1,tmp2,g.player[0].name,1-j,k); 
-							}
-							else if(tmp1 == "Å·") {
-								if(g.board[1-j][k] == null) {
-									g.board[1-j][k] = new King(tmp1,tmp2,g.player[0].name,1-j,k);
+							if(i == 0) {
+								if(tmp1 == "·è") {
+									g.board[1-j][k] = new Rook(tmp1,tmp2,g.player[0].name,1-j,k); 
+								}
+								else if(tmp1 == "Å·") {
+									if(g.board[1-j][k] == null) {
+										g.board[1-j][k] = new King(tmp1,tmp2,g.player[0].name,1-j,k);
+									}
+								}
+								else {
+									g.board[1-j][k] = new Pawn(tmp1,tmp2,g.player[0].name,1-j,k);
 								}
 							}
 							else {
-								g.board[1-j][k] = new Pawn(tmp1,tmp2,g.player[0].name,1-j,k);
-							}
-						}
-						else {
-							if(tmp1 == "·è") {
-								g.board[6+j][7-k] = new Rook(tmp1,tmp2,g.player[0].name,6+j,7-k); 
-							}
-							else if(tmp1 == "Å·") {
-								if(g.board[6+j][7-k] == null) {
-									g.board[6+j][7-k] = new King(tmp1,tmp2,g.player[0].name,6+j,7-k);
+								if(tmp1 == "·è") {
+									g.board[6+j][7-k] = new Rook(tmp1,tmp2,g.player[0].name,6+j,7-k); 
 								}
-							}
-							else {
-								g.board[6+j][7-k] = new Pawn(tmp1,tmp2,g.player[0].name,6+j,7-k);
+								else if(tmp1 == "Å·") {
+									if(g.board[6+j][7-k] == null) {
+										g.board[6+j][7-k] = new King(tmp1,tmp2,g.player[0].name,6+j,7-k);
+									}
+								}
+								else {
+									g.board[6+j][7-k] = new Pawn(tmp1,tmp2,g.player[0].name,6+j,7-k);
+								}
 							}
 						}
 					}

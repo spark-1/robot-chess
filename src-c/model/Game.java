@@ -16,7 +16,7 @@ public class Game {
 		board = new Base[8][8];
 		turn = 1; // 1일시 플레이어[0]의 턴, -1일시 플레이어[1]의 턴
 	}
-
+/*
 	public static void main(String args[]) {
 		Game g = new Game();
 
@@ -46,6 +46,7 @@ public class Game {
 		g.equip(4, 3, g.equipment);
 		g.attack(4, 3, 3, 4);*/
 	}
+*/
 
 	public void win() {
 		if (turn == 1)
