@@ -29,15 +29,23 @@
 | 룩   | 기계형 | 110  | 35   | 5    | 2     | 3    | 3    |
 | 킹   | 인간형 | 250  | 5    | 0    | 1     | 1    | 1    |
 
+#### User Model
+
+| id | name   | total   | win  | lose  |
+| ---- | ------ | ---- | ---- | ---- |
+| int | varchar(20)   | int  | int  | int  |
 
 #### DTO
 
-데이터베이스 DTO(Data Transfer Object)객체를 `Horse.java` 로 구현함!
+데이터베이스 DTO(Data Transfer Object)객체를 `Horse.java` , `User.java` 로 구현함!
 데이터베이스의 애트리뷰트값을 getter와 setter로 가져올 수 있도록!
 
 #### DAO
 
 DAO는 Data Access Object의 줄임말로 데이터베이스에 연결해 필요한 로직을 수행하는 클래스이다.
+
+- `DAO.java` => Horse관련 로직
+- `UDao.java` => User관련 로직
 
 기본적으로 여기서는 javaproject라는 Database를 먼저 생성했다.
 
@@ -77,6 +85,10 @@ Main 함수가 있는 `Game.java`내부에
 주석처리를 해두었다. 처음에 테이블을 생성하고 값을 넣을때에만 주석을 풀고 실행해주면된다!
 
 즉, 각자 변경해줘야할 부분은 uid, upw 부분이고, 기본적으로 javaproject database생성만 해주면된다.!
+
+#### UserTest.java
+
+User 관련실행방법은 `UserTest.java` 에 올렸음!
 
 ### 역할분담
 
