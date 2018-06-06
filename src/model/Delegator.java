@@ -32,6 +32,9 @@ public class Delegator {
 			if(b.hp <= 0){
 				System.out.println(a.master + "의 " + a.name + "의 공격으로 " + b.master + "의 " + b.name + "이(가) 죽었습니다.");
 				board[b.locX][b.locY] = null;
+				if(b instanceof King) {
+					Game.win();
+				}
 			}
 			else{
 				System.out.println(a.master + "의 " + a.name + "의 공격으로 " + b.master + "의 " + b.name + "의 체력이 " + b.hp + "로 되었습니다.");
@@ -58,7 +61,7 @@ public class Delegator {
 			if(b.hp <= 0){
 				System.out.println(a.master + "의 " + a.name + "의 스킬공격으로 " + b.master + "의 " + b.name + "이(가) 죽었습니다.");
 				board[b.locX][b.locY] = null;
-				if(b.name.equals("킹")) {
+				if(b instanceof King) {
 					Game.win();
 				}
 			}

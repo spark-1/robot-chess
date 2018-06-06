@@ -3,7 +3,7 @@ package model;
 public abstract class Equipment {
 	
 	String name;
-	String equip_type;
+	public String equip_type;
 	int added_def;
 	int added_atk;
 	int adeed_spd;

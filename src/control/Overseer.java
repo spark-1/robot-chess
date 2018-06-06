@@ -7,8 +7,11 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 
+import view.Ost;
 import model.Base;
 import model.Game;
+import model.King;
+import model.Pawn;
 import model.Rook;
 import view.Battle_Area;
 import view.Boom;
@@ -17,6 +20,8 @@ public class Overseer implements ActionListener, MouseListener{
 	Game game = null;
 	Battle_Area ba = null;
 	Thread boom = null;
+	Ost ost = Ost.getInstance();
+	
 	int state;
 	public Overseer(Game g)
 	{
@@ -45,7 +50,7 @@ public class Overseer implements ActionListener, MouseListener{
 		ba.set_turn(g);
 		ba.reset_sPane();
 		state = 0;
-
+		ost.playMusic(ost.background);
 	}
 
 	@Override
@@ -132,38 +137,44 @@ public class Overseer implements ActionListener, MouseListener{
 				
 				else if(e.getSource() == ba.getBoard()[i][j] && this.state == 1)
 				{
-					if(game.turn == 1)
+					int t = game.turn;
+					if(t == 1)
 					{
 						game.attack(game.player[0].get_Base().locX, game.player[0].get_Base().locY, i, j);
+						play_sfx(game.player[0].get_Base(), t, game.turn, this.state);
 					}
 					else
 					{
 						game.attack(game.player[1].get_Base().locX, game.player[1].get_Base().locY, i, j);
+						play_sfx(game.player[1].get_Base(), t, game.turn, this.state);
 					}
 					
 					ready_for_input();
-					this.boom = new Boom(this.ba, i, j);
-					boom.start(); //여기서(공격할 때만) 해보려고 했는데...
 				}
 				else if(e.getSource() == ba.getBoard()[i][j] && this.state == 2)
 				{
-					if(game.turn == 1)
+					int t = game.turn;
+					if(t == 1)
 					{
 						game.move(game.player[0].get_Base().locX, game.player[0].get_Base().locY, i, j);
+						play_sfx(game.player[0].get_Base(), t, game.turn, this.state);
 					}
 					else
 					{
 						game.move(game.player[1].get_Base().locX, game.player[1].get_Base().locY, i, j);
+						play_sfx(game.player[1].get_Base(), t, game.turn, this.state);
 					}
 					ready_for_input();
 				}
 				else if(e.getSource() == ba.getBoard()[i][j] && this.state == 3)
 				{
-					if(game.turn == 1)
+					int t = game.turn;
+					if(t == 1)
 					{
 						if(i == game.player[0].get_Base().locX && j == game.player[0].get_Base().locY)
 						{
 							game.skill(game.player[0].get_Base().locX, game.player[0].get_Base().locY);
+							play_sfx(game.player[0].get_Base(), t, game.turn, this.state);
 						}
 						else
 						{
@@ -175,6 +186,7 @@ public class Overseer implements ActionListener, MouseListener{
 						if(game.board[i][j] == game.player[1].get_Base())
 						{
 							game.skill(game.player[1].get_Base().locX, game.player[1].get_Base().locY);
+							play_sfx(game.player[1].get_Base(), t, game.turn, this.state);
 						}
 						else
 						{
@@ -185,14 +197,18 @@ public class Overseer implements ActionListener, MouseListener{
 				}
 				else if(e.getSource() == ba.getBoard()[i][j] && this.state == 4)
 				{
-					if(game.turn == 1)
+					int t = game.turn;
+					if(t == 1)
 					{	
 						game.skill(game.player[0].get_Base().locX, game.player[0].get_Base().locY, i, j);	
+						play_sfx(game.player[0].get_Base(), t, game.turn, this.state);
 					}
 					else
 					{
 						game.skill(game.player[1].get_Base().locX, game.player[1].get_Base().locY, i, j);
-					}	
+						play_sfx(game.player[1].get_Base(), t, game.turn, this.state);
+					}
+					
 					ready_for_input();
 				}
 			}
@@ -350,6 +366,10 @@ public class Overseer implements ActionListener, MouseListener{
 		this.state = 0;
 		ba.set_turn(this.game);
 		ba.reset_sPane();
+		if(game.end == -1 || game.end == 1)
+		{
+			System.exit(0);
+		}
 	}
 	
 	public void shift_state(int num)
@@ -389,6 +409,59 @@ public class Overseer implements ActionListener, MouseListener{
 				ba.getActSkill().setEnabled(false);
 			}
 		}
+		else if(b instanceof King)
+		{
+			ba.getPasSkill().setEnabled(false);
+			ba.getActSkill().setEnabled(false);
+		}
 	}
 	
+	public void play_sfx(Base b, int ori, int now, int state)
+	{
+		if(ori == now) { return;}
+
+		if(state == 1)
+		{
+			if(b instanceof Pawn)
+			{
+				ost.playSfx(ost.pawnhit);
+			}
+			else if(b instanceof Rook)
+			{
+				ost.playSfx(ost.rookhit);
+			}
+			else if(b instanceof King)
+			{
+				ost.playSfx(ost.kinghit);
+			}
+		}
+		if(state == 2)
+		{
+			//걷는거...
+		}
+		if(state == 3)
+		{
+			if(b instanceof Pawn)
+			{
+				ost.playSfx(ost.pawnpas);
+			}
+			else if(b instanceof Rook)
+			{
+				ost.playSfx(ost.rookpas);
+			}
+		}
+		if(state == 4)
+		{
+			if(b instanceof Pawn)
+			{
+				ost.playSfx(ost.pawnact);
+			}
+			else if(b instanceof Rook)
+			{
+				ost.playSfx(ost.rookact);
+			}
+		}
+	}
+
+
 }

@@ -17,7 +17,6 @@ public class Boom extends Thread{
 		try {
 			sleep(500);
 		} catch (InterruptedException e) {}
-		b.dislight();
 		System.out.println("Shall we Dance");
 	}
 

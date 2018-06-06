@@ -17,7 +17,7 @@ public class DAO {
 	String driver = "com.mysql.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/javaproject";
 	String uid = "root";
-	String upw = "juns4025!";
+	String upw = "imim5565";
 	
 	public DAO() {
 		try {
