@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Model.Game;
+import model.Game;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import Model.Game;
 
 
 public class PlayerFrame extends JPanel implements ActionListener{

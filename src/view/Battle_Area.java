@@ -20,13 +20,13 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
-import Model.Base;
-import Model.Game;
-import Model.King;
-import Model.Pawn;
-import Model.Rook;
-import Model.Base;
-import Model.Equipment;
+import model.Base;
+import model.Game;
+import model.King;
+import model.Pawn;
+import model.Rook;
+import model.Base;
+import model.Equipment;
 
 public class Battle_Area extends JFrame{
 	

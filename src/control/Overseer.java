@@ -8,11 +8,11 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 
 import view.Ost;
-import Model.Base;
-import Model.Game;
-import Model.King;
-import Model.Pawn;
-import Model.Rook;
+import model.Base;
+import model.Game;
+import model.King;
+import model.Pawn;
+import model.Rook;
 import view.Battle_Area;
 import view.Boom;
 

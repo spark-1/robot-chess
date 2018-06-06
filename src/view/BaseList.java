@@ -1,5 +1,5 @@
 package view;
-import Model.Horse;
+import model.Horse;
 
 public class BaseList {
 	public String name;

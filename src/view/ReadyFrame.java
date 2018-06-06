@@ -12,12 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 
-import Model.Base;
-import Model.Game;
-import Model.Horse;
-import Model.King;
-import Model.Pawn;
-import Model.Rook;
+import model.Base;
+import model.Game;
+import model.Horse;
+import model.King;
+import model.Pawn;
+import model.Rook;
 import control.Overseer;
 
 public class ReadyFrame extends JFrame implements ActionListener,MouseListener{

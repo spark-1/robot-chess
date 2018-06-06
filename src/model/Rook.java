@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Rook extends Base implements Rookable {
 

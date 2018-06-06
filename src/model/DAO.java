@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-import Model.Horse;
 
 public class DAO {
 	
