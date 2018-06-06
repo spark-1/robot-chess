@@ -47,7 +47,7 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 		
 		Title = new JLabel("R o b o t   C h e s s");
 		Title.setBounds(300, 200, 600,60);
-		Title.setFont(new Font("³ª´®½ºÄù¾î¶ó¿îµå EXTRABOLD",Font.BOLD,40));
+		Title.setFont(new Font("µ¸¿ò",Font.BOLD,40));
 		contentPane.add(Title);
 		
 		Press = new BlinkLabel("Press Enter");

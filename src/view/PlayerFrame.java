@@ -50,8 +50,8 @@ public class PlayerFrame extends JPanel implements ActionListener{
 		this.setLayout(null);
 		tmp = Integer.toString(i);
 		Title = new JLabel("Player"+tmp);
-		Title.setBounds(((this.w/2)-180)/2, 100, 180, 48);
-		Title.setFont(new Font("³ª´®½ºÄù¾î¶ó¿îµå EXTRABOLD",Font.BOLD,48));
+		Title.setBounds(((this.w/2)-190)/2, 100, 190, 48);
+		Title.setFont(new Font("µ¸¿ò",Font.BOLD,48));
 		this.add(Title);
 		
 		
