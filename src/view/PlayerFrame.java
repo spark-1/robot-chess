@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.Game;
+import model.King;
+import model.Pawn;
+import model.Rook;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -22,11 +25,13 @@ public class PlayerFrame extends JPanel implements ActionListener{
 	
 	private JLabel Title;
 	public JComboBox[][] Choose = new JComboBox[2][8];
-	private JButton Ready;
+	public JButton Ready;
 	private JLabel RR;
 	private int w = 1000;
 	private int h = 678;
 	private boolean RUReady = false;
+	public int PLNum;
+	public BaseList B[];
 	public String[] ss;
 	public String[] s1;
 	public String[] s2;
@@ -39,6 +44,7 @@ public class PlayerFrame extends JPanel implements ActionListener{
 		this.s1 = S1;
 		this.s2 = S2;
 		
+		PLNum = i;
 		
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(null);
@@ -82,20 +88,15 @@ public class PlayerFrame extends JPanel implements ActionListener{
 		
 		
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if((JButton)e.getSource() == Ready) {
-			setReady();
-			RR.setVisible(RUReady);
-		}
-	}
+	
 	
 	public void setReady() {
 		if(RUReady == true) {
+			System.out.println(RUReady);
 			RUReady = false; 
 		}
 		else {
+			System.out.println(RUReady);
 			RUReady = true;
 		}
 	}
@@ -106,5 +107,15 @@ public class PlayerFrame extends JPanel implements ActionListener{
 	
 	public JButton getReady() {
 		return Ready;
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+			if(e.getSource() == Ready) {
+				this.setReady();
+				this.RR.setVisible(RUReady);
+			}
 	}
 }

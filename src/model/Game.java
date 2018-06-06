@@ -1,6 +1,7 @@
 package model;
 
 import control.Overseer;
+import view.Intro;
 
 public class Game {
 
@@ -11,43 +12,31 @@ public class Game {
 	static public int end; // 1이면 0번 플레이어 승리 -1이면 1번플레이어 승리
 
 	public Game() {
+		int i = 0;
+		int j = 0;
+		
 		player = new Player[2];
 		player[0] = new Player("정다혜");
 		player[1] = new Player("고양이");
 		board = new Base[8][8];
+		for(i = 0; i < 8 ;i++) {
+			for(j = 0; j < 8; j++) {
+				board[i][j] = null;
+			}
+		}
 		turn = 1; // 1일시 플레이어[0]의 턴, -1일시 플레이어[1]의 턴
 	}
-/*
+
 	public static void main(String args[]) {
-		// 테이블 생성 및 레코드 추가
-		// DAO dao = new DAO();
-		// dao.createHorse();
-		// dao.insert_record();
-
 		Game g = new Game();
-
-		g.board[4][0] = new King("킹", "인간형", g.player[0].name, 4, 0);
-		g.board[2][0] = new Rook("룩", "기계형", g.player[0].name, 2, 0);
-		g.board[6][0] = new Rook("룩", "기계형", g.player[0].name, 6, 0);
-		g.board[1][1] = new Pawn("폰", "인간형", g.player[0].name, 1, 1);
-		g.board[3][1] = new Pawn("폰", "기계형", g.player[0].name, 3, 1);
-		g.board[5][1] = new Pawn("폰", "인간형", g.player[0].name, 5, 1);
-		g.board[7][1] = new Pawn("폰", "기계형", g.player[0].name, 7, 1);
-
-		g.board[3][7] = new King("킹", "인간형", g.player[1].name, 3, 7);
-		g.board[1][7] = new Rook("룩", "기계형", g.player[1].name, 1, 7);
-		g.board[5][7] = new Rook("룩", "기계형", g.player[1].name, 5, 7);
-		g.board[6][6] = new Pawn("폰", "인간형", g.player[1].name, 6, 6);
-		g.board[4][6] = new Pawn("폰", "기계형", g.player[1].name, 4, 6);
-		g.board[2][6] = new Pawn("폰", "인간형", g.player[1].name, 2, 6);
-		g.board[0][6] = new Pawn("폰", "기계형", g.player[1].name, 0, 6);
-
 		Game.turn = 1;
+		Intro I = new Intro(g);
+		
 
-		Overseer control = new Overseer(g);
+		//Overseer control = new Overseer(g);
 
 	}
-*/
+
 
 	public static void win() {
 		if (turn == 1) {

@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.Game;
 import model.Horse;
 
 public class Intro extends JFrame implements MouseListener, KeyListener {
@@ -24,6 +25,7 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 	private int h = 678;
 	public ReadyFrame PF;
 	public Horse H;
+	public Game G;
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +34,8 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 	/**
 	 * Create the frame.
 	 */
-	public Intro() {
+	public Intro(Game g) {
+		this.G = g;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, w, h);
 		contentPane = new JPanel();
@@ -61,7 +64,7 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 		// TODO Auto-generated method stub
 		if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 			this.setVisible(false);
-			PF = new ReadyFrame();
+			PF = new ReadyFrame(G);
 			PF.setVisible(true);
 			
 		}
@@ -100,7 +103,7 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 		// TODO Auto-generated method stub
 		if(e.getSource() == contentPane) {
 			this.setVisible(false);
-			PF = new ReadyFrame();			
+			PF = new ReadyFrame(G);			
 			PF.setVisible(true);
 		}
 	}

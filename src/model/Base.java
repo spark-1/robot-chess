@@ -21,6 +21,7 @@ public abstract class Base{
 	
 	public Base(String name, String type, String master, int x, int y){
 		System.out.println(name+type+"생성했습니다!!");
+		/*
 		DAO dao = new DAO();
 		Horse horse = dao.findHorse(name, type);
 		this.hp = horse.hp;
@@ -31,7 +32,10 @@ public abstract class Base{
 		this.spdY = horse.spdY;
 		this.name = horse.name;
 		this.type = horse.type;
-		/*
+		*/
+		System.out.println(name);
+		System.out.println(type);
+		System.out.println(master);
 	    hp = 150;
 		atk = 10;
 		def = 0;
@@ -63,7 +67,6 @@ public abstract class Base{
 		}
 		//maxHp = horse.hp;
 		maxHp = 200;
-		*/
 	}
 	
 	public abstract Movable getRookMoveable();
