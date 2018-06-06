@@ -11,10 +11,12 @@ import model.Base;
 import model.Game;
 import model.Rook;
 import view.Battle_Area;
+import view.Boom;
 
 public class Overseer implements ActionListener, MouseListener{
 	Game game = null;
 	Battle_Area ba = null;
+	Thread boom = null;
 	int state;
 	public Overseer(Game g)
 	{
@@ -138,8 +140,10 @@ public class Overseer implements ActionListener, MouseListener{
 					{
 						game.attack(game.player[1].get_Base().locX, game.player[1].get_Base().locY, i, j);
 					}
-				
+					
 					ready_for_input();
+					this.boom = new Boom(this.ba, i, j);
+					boom.start(); //여기서(공격할 때만) 해보려고 했는데...
 				}
 				else if(e.getSource() == ba.getBoard()[i][j] && this.state == 2)
 				{
@@ -243,7 +247,6 @@ public class Overseer implements ActionListener, MouseListener{
 					{
 						ba.light_moveable(i, j);
 					}
-					
 				}
 			}
 		}

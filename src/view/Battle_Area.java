@@ -25,6 +25,8 @@ import model.Game;
 import model.King;
 import model.Pawn;
 import model.Rook;
+import model.Base;
+import model.Equipment;
 
 public class Battle_Area extends JFrame{
 	
@@ -42,7 +44,8 @@ public class Battle_Area extends JFrame{
 			new ImageIcon("Siege_S.png"),        //10
 			new ImageIcon("King.png"),           //11
 			new ImageIcon("King_S.png"),         //12
-			new ImageIcon("skill_point.png")     //13
+			new ImageIcon("skill_point.png"),    //13
+			new ImageIcon("Boom.gif")            //14 
 	}; 
 	
 	private JLayeredPane pane = new JLayeredPane(); 
@@ -90,7 +93,7 @@ public class Battle_Area extends JFrame{
 																		
 		name = new JLabel();
 		sPane.add(name);
-		name.setBounds(205, 30, 100, 30);
+		name.setBounds(175, 30, 100, 30);
 		name.setFont(new Font("Monospaced", Font.PLAIN, 20));
 		
 		hp = new JProgressBar(0, 50);
@@ -285,7 +288,7 @@ public class Battle_Area extends JFrame{
 			portrait.setIcon(pic[12]);
 		}
 		
-		name.setText(b.name);
+		name.setText(b.type +" "+ b.name);
 		
 		hp.setMaximum(b.maxHp);
 		hp.setMinimum(0);
@@ -299,7 +302,34 @@ public class Battle_Area extends JFrame{
 		getCancel().setEnabled(false);
 		
 		stat.setText("Atk: "+b.atk+" , Def: "+b.def);
-		equip.setText("머리:-----\n다리:-----\n무기:-------\n");
+		equip.setText("");
+		if(b.e[0] == null)
+		{
+			equip.append("Armor: 없음\n");
+		}
+		else
+		{
+			equip.append("Armor:"+b.e[0].equip_type+"\n");
+		}
+		
+		if(b.e[1] == null)
+		{
+			equip.append("Weapon: 없음\n");
+		}
+		else
+		{
+			equip.append("Weapon:"+b.e[1].equip_type+"\n");
+		}
+		
+		if(b.e[2] == null)
+		{
+			equip.append("Leg: 없음");
+		}
+		else
+		{
+			equip.append("Leg:" +b.e[2].equip_type);
+		}
+		
 	}
 	
 	public void reset_sPane()
@@ -360,6 +390,12 @@ public class Battle_Area extends JFrame{
 	{
 		point[i][j].setVisible(true);
 		point[i][j].setIcon(pic[13]);
+	}
+	
+	public void light_hit(int i, int j)
+	{
+		point[i][j].setVisible(true);
+		point[i][j].setIcon(pic[14]);
 	}
 	
 	public void dislight()
