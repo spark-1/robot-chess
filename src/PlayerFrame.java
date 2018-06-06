@@ -21,6 +21,7 @@ public class PlayerFrame extends JPanel implements MouseListener{
 	private int w = 1000;
 	private int h = 678;
 	private boolean RUReady = false;
+	public String s = "Test";
 	
 	public PlayerFrame(int x, int y, int i, Game g){
 		String tmp;
@@ -41,7 +42,7 @@ public class PlayerFrame extends JPanel implements MouseListener{
 		//콤보박스를 만들어 주는 부분 추후 <instanceof를 활용하여 폰 룩의 콤보박스를 구별해줄 필요 있음
 		//Image ComboBox를 추가 구현 해보자
 		for(j = 0; j<8 ; j++) {
-			Choose[0][i] = new JComboBox<String>();
+			Choose[0][i] = new JComboBox<String>(this.s);
 			Choose[0][i].setBounds(x+60*i,y+100,60,60);
 			Choose[0][i].addActionListener(new ActionListener() {
 
