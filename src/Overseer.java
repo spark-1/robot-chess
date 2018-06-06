@@ -6,10 +6,9 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 
-import model.Base;
-import model.Game;
-import model.Rook;
-import view.Battle_Area;
+import Model.Base;
+import Model.Game;
+import Model.Rook;
 import Model.Game;
 
 public class Overseer implements ActionListener, MouseListener{

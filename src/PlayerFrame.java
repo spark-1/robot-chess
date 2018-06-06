@@ -1,3 +1,4 @@
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,7 +15,7 @@ import javax.swing.JComboBox;
 import Model.Game;
 
 
-public class PlayerFrame extends JPanel implements MouseListener{
+public class PlayerFrame extends JPanel implements ActionListener{
 	
 	private JLabel Title;
 	public JComboBox[][] Choose = new JComboBox[2][8];
@@ -50,45 +51,16 @@ public class PlayerFrame extends JPanel implements MouseListener{
 		for(j = 0; j<8 ; j++) {
 			Choose[0][j] = new JComboBox<String>(this.s1);
 			Choose[0][j].setBounds(60*(j)+5,300,60,60);
-			//Choose[0][j].addActionListener(new ActionListener() {
-			//	private String temp1;
-			//	private String temp2;
-			//	
-			//	@Override
-			//	public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
-					//temp1 = Choose[0][j].getSelectedItem().toString();
-			//	}
-				
-			//});
 			this.add(Choose[0][j]);
 		}
 		for(j = 0; j<8 ; j++) {
 			if(j == 4) {
 				Choose[1][j] = new JComboBox<String>(this.ss);
 				Choose[1][j].setBounds(60*(j)+5,400,60,60);
-				// Choose[1][j].addActionListener(new ActionListener() {
-				//
-				//	@Override
-				//	public void actionPerformed(ActionEvent arg0) {
-				//		// TODO Auto-generated method stub
-				//		
-				//	}
-					
-				// });
 			}
 			else {
 				Choose[1][j] = new JComboBox<String>(this.s2);
 				Choose[1][j].setBounds(60*(j)+5,400,60,60);
-				Choose[1][j].addActionListener(new ActionListener() {
-	
-					@Override
-					public void actionPerformed(ActionEvent arg0) {
-						// TODO Auto-generated method stub
-						
-					}
-					
-				});
 			}
 			this.add(Choose[1][j]);
 		}
@@ -96,7 +68,6 @@ public class PlayerFrame extends JPanel implements MouseListener{
 		Ready = new JButton("READY");
 		Ready.setBounds(((this.w/2)-200)/2,this.h - 140,200,40);
 		Ready.setFont(new Font("µ¸¿ò",Font.BOLD,20));
-		Ready.addMouseListener(this);
 		this.add(Ready);
 		
 		RR = new JLabel("READY!!!");
@@ -108,32 +79,12 @@ public class PlayerFrame extends JPanel implements MouseListener{
 		
 	}
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if((JButton)arg0.getSource() == Ready) {
+		if((JButton)e.getSource() == Ready) {
 			setReady();
 			RR.setVisible(RUReady);
 		}
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void setReady() {

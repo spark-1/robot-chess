@@ -30,6 +30,7 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 	public String[] ss;
 	public String[] s1;
 	public String[] s2;
+	public Overseer OS;
 	/**
 	 * Launch the application.
 	 */
@@ -138,7 +139,8 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 					WF.removeMouseListener(this);
 					PF[0].removeMouseListener(this);
 					PF[1].removeMouseListener(this);
-					Overseer BA = new Overseer(this.g);
+					OS = new Overseer(this.g);
+					OS.setVisible(true);
 					setVisible(false);
 				
 			}
