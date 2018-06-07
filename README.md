@@ -14,7 +14,7 @@
 
 ### UML
 
-![](./images/uml.png)
+![](./uml.png)
 
 
 ### DB 연동하는 방법
