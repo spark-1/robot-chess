@@ -26,6 +26,7 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 	public ReadyFrame PF;
 	public Horse H;
 	public Game G;
+	Ost ost = Ost.getInstance();
 	/**
 	 * Launch the application.
 	 */
@@ -36,6 +37,7 @@ public class Intro extends JFrame implements MouseListener, KeyListener {
 	 */
 	public Intro(Game g) {
 		this.G = g;
+		ost.playMusic(ost.Intro);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, w, h);
 		contentPane = new JPanel();

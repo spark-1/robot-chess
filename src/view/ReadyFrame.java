@@ -32,6 +32,7 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 	public String[] s1;
 	public String[] s2;
 	public Overseer OV;
+	Ost ost = Ost.getInstance();
 	/**
 	 * Launch the application.
 	 */
@@ -157,7 +158,8 @@ public class ReadyFrame extends JFrame implements ActionListener,MouseListener{
 			System.out.println(RUReady);
 			
 			if(RUReady == 2) {
-				 OV = new Overseer(G);;
+				 ost.stopMusic();
+				 OV = new Overseer(G);
 				 setVisible(false);
 
 			}

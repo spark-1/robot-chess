@@ -15,10 +15,12 @@ import model.Pawn;
 import model.Rook;
 import view.Battle_Area;
 import view.Boom;
+import view.Endgame;
 
 public class Overseer implements ActionListener, MouseListener{
 	Game game = null;
 	Battle_Area ba = null;
+	Endgame eg = null;
 	Thread boom = null;
 	Ost ost = Ost.getInstance();
 	
@@ -366,9 +368,17 @@ public class Overseer implements ActionListener, MouseListener{
 		this.state = 0;
 		ba.set_turn(this.game);
 		ba.reset_sPane();
-		if(game.end == -1 || game.end == 1)
+		if(game.end == -1)
 		{
-			System.exit(0);
+			ost.stopMusic();
+			this.eg = new Endgame(game.player[1].name);
+			ba.setVisible(false);
+		}
+		else if(game.end == 1)
+		{
+			ost.stopMusic();
+			this.eg = new Endgame(game.player[1].name);
+			ba.setVisible(false);
 		}
 	}
 	
